@@ -1,0 +1,35 @@
+<div mat-dialog-title>
+    <h2>{{isEditMode ? 'Edit User' : 'Add User'}}</h2>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>NAME</mat-label>
+                <input matInput placeholder="Name" formControlName="name" class="full-width">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="empForm.controls['name'].hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="email" formControlName="email" class="full-width">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon><mat-error
+                    *ngIf="empForm.controls['email'].hasError('required')">Email is required</mat-error>
+                <mat-error *ngIf="empForm.controls['email'].hasError('email')">Invalid email format</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Role</mat-label>
+                <input matInput placeholder="Role" formControlName="role" class="full-width">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="empForm.controls['role'].hasError('required')">Role is required</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="submit">
+        <button mat-raised-button color="primary" type="submit" class="add" [disabled]="!empForm.valid">Add</button>
+    </div>
+</form>
